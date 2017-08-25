@@ -27,6 +27,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -353,14 +354,18 @@ public class SplashScreen extends CordovaPlugin {
                 spinnerDialog.setIndeterminate(true);
 
                 RelativeLayout centeredLayout = new RelativeLayout(cordova.getActivity());
-                centeredLayout.setGravity(Gravity.CENTER);
+                centeredLayout.setGravity(Gravity.BOTTOM);
                 centeredLayout.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
                 ProgressBar progressBar = new ProgressBar(webView.getContext());
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-                layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-                progressBar.setLayoutParams(layoutParams);
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+                layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 
+                DisplayMetrics metrics = spinnerDialog.getContext().getResources().getDisplayMetrics();
+                progressBar.setPadding(0, 0, 0, (28 * metrics.heightPixels) / 100);
+
+                progressBar.setLayoutParams(layoutParams);
                 centeredLayout.addView(progressBar);
 
                 spinnerDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
