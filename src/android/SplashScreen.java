@@ -363,7 +363,7 @@ public class SplashScreen extends CordovaPlugin {
                 layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 
                 DisplayMetrics metrics = spinnerDialog.getContext().getResources().getDisplayMetrics();
-                progressBar.setPadding(0, 0, 0, (28 * metrics.heightPixels) / 100);
+                progressBar.setPadding(0, 0, 0, (15 * metrics.heightPixels) / 100);
 
                 progressBar.setLayoutParams(layoutParams);
                 centeredLayout.addView(progressBar);
